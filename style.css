@@ -1,0 +1,226 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --hue:202;
+  --color-base-blue-300:hsl(var(--hue), 70%, 40%);
+  --color-base-blue-800:hsl(var(--hue), 70%, 65%);
+  --color-base-white: hsl(0, 0%, 100%);
+  font-size: 62.5%;
+}
+
+html, body, input {
+  font-family: Mulish;
+  font-size: 1.6rem;
+}
+
+.app{
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100vh;
+}
+
+/* HEADER */
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  background: var(--color-base-blue-800);
+  padding: 1.2rem 2.8rem;
+}
+
+header .logo {
+  padding: .8rem;
+  background:var(--color-base-white);
+  border-radius: 50%;
+}
+
+header form{
+  flex: 1;
+}
+
+.input-wrapper label {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.input-wrapper input {
+  width: 100%;
+  background: var(--color-base-blue-300);
+  padding: 1.4rem;
+  border: 0;
+  border-radius: .4rem;
+}
+
+.input-wrapper input::placeholder{
+  color: var(--color-base-white);
+}
+
+header .avatar {
+  width: 4rem;
+  border-radius: 50%;
+}
+
+/* MAIN */
+
+main {
+  overflow-y: scroll; /*Faz com que apenas o main tenha rolagem, deixando o header e o footer fixos na tela*/
+  background: var(--color-base-white);
+}
+
+main .container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  animation: move .7s backwards ease-in-out;
+}
+
+.container p, .like-wrapper, .sidebar {
+  padding-inline: 1.6rem;
+}
+
+main .main-image {
+  max-width: 80rem;
+  aspect-ratio: 16/9;
+  object-fit: cover; /*para caso a imagem ter um tamanho diferente e ficar feia, essa tag melhora a imagem*/
+}
+
+main h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 3.8rem;
+}
+
+main .container p {
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+}
+
+main .like {
+  background: var(--color-base-blue-800);
+  padding: 1.2rem;
+  border-radius: 50%;
+  margin-top: .6rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  margin-bottom: 4rem;
+
+  animation: move .7s backwards ease-in-out;
+}
+
+.item {
+  filter: grayscale(20%);
+  max-width: 45rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.item img {
+  width: 15rem;
+  height: 8rem;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  border-radius: .4rem;
+}
+.item img:hover {
+  transform: scale(1.1);
+  filter: saturate(1.5) grayscale(0%);
+}
+
+.item a{
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.9rem;
+  text-decoration: none;
+  color: var(--color-base-blue-800);
+}
+.item p {
+  width: 80%;
+}
+footer p{
+  padding: 1.6rem;
+  text-align: center;
+  background: var(--color-base-blue-800);
+  color: var(--color-base-white);
+  font-weight: 600;
+}
+
+
+@keyframes move {
+  0% {
+    transform: translateY(50%)
+  }
+  50%{
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}
+
+/* MEDIA QUERIES TABLET */
+
+@media (min-width: 768px){
+  body{
+    background-color: var(--color-base-blue-800);
+  }
+  .container{
+    width: min(180rem, 100%);
+    margin: 0 auto;
+  }
+  main {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 10rem;
+  }
+  main .main-image {
+    padding-inline: 1.6rem;
+  }
+
+  main .container {
+    max-width: 80rem; 
+  }
+
+  .like-wrapper{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .item {
+    width: 45rem;
+  }
+
+  .item img {
+    width: 15rem;
+    height: 8rem;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+    border-radius: .4rem;
+  }
+
+  .item p{
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+}
+
+/* MEDIA QUERIES DESKTOP */
+
+@media (min-width: 1400px){
+  main {
+    flex-direction: row;
+  }
+}
